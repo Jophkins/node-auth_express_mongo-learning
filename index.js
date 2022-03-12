@@ -1,5 +1,6 @@
 // Creating project installing packages 'express mongoose nodemon'
 // mongoose - библиотека для работы с базой данных mongo. ODM аналог ORM для документо-ориентированный бд
+// youtube tutorial - https://www.youtube.com/watch?v=d_aJdcDq6AY
 
 const express = require('express');
 const mongoose = require('mongoose');

@@ -48,7 +48,7 @@ class authController {
       if (!validPassword) { // Если пароль не верный - возвращаем сообщение
         return res.status(400).json({message: "Incorrect password"});
       }
-      const token = generateAccessToken(user._id, user.roles);
+      const token = generateAccessToken(user._id, user.roles); // создаем функцию для генерации токена
       return res.json({token});
     } catch (e) {
       console.log(e);
@@ -58,7 +58,8 @@ class authController {
 
   async getUsers(req, res) {
     try {
-      res.json("server work")
+      const users = await User.find(); // Получаем юзеров из БД
+      res.json(users);
     } catch (e) {
 
     }
