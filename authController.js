@@ -2,10 +2,15 @@
 const User = require('./models/User');
 const Role = require('./models/Role');
 const bcrypt = require('bcryptjs'); //для хеширования пароля
+const { validationResult } = require('express-validator'); // функция для возвращения ошибок в следствии валидации
 
 class authController {
   async registration(req, res) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({message: "Error while registration", errors});
+      }
       const {username, password} = req.body;
       const candidate = await User.findOne({username}); // ищем юзера
       if (candidate) {
@@ -24,7 +29,6 @@ class authController {
 
   async login(req, res) {
     try {
-
     } catch (e) {
       console.log(e);
       res.status(400).json({message: 'Login error'})
